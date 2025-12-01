@@ -2,9 +2,9 @@
 
 import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchNoteById } from "../../../../lib/api";
+import { fetchNoteById } from "../../../lib/api";
 import { useParams } from "next/navigation";
-import type { Note } from "../../../../types/note";
+import type { Note } from "../../../types/note";
 import css from "./NoteDetails.module.css";
 
 export const NoteDetailsClient: FC = () => {
