@@ -1,7 +1,7 @@
 import css from "./page.module.css";
 import { FC } from "react";
 
-export const HomePage: FC = () => {
+const HomePage: FC = () => {
   return (
     <div className={css.container}>
       <h1 className={css.title}>Welcome to NoteHub</h1>
