@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, DehydratedState } from "@tanstack/react-query"; 
 import React, { useState, useMemo } from "react";
 import { fetchNotes, type FetchNotesParams } from "../../lib/api";
 import NoteList from "../../components/NoteList/NoteList";
@@ -12,7 +12,11 @@ import StatusError from "../../components/StatusError/StatusError";
 import StatusLoader from "../../components/StatusLoader/StatusLoader";
 import css from "./Notes.module.css";
 
-export default function NotesClient() {
+interface NotesClientProps {
+  dehydratedState: DehydratedState;
+}
+
+export default function NotesClient({ dehydratedState }: NotesClientProps) {
   const [params, setParams] = useState<FetchNotesParams>({
     page: 1,
     perPage: 10,
@@ -46,7 +50,6 @@ export default function NotesClient() {
       <h1 className={css.pageTitle}>Your Notes</h1>
       <div className={css.controls}>
         <SearchBox searchTerm={params.search ?? ''} setSearchTerm={handleSearch} />
-        
         <button
           className={css.createButton}
           onClick={() => setIsModalOpen(true)}
