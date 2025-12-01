@@ -1,9 +1,12 @@
+export type NoteTag = string;
+
 export interface Note {
     id: number;
     title: string;
     content: string;
     createdAt: string;
     updatedAt: string;
+    tag: NoteTag; 
 }
 
 export type NoteCreationData = Omit<Note, 'id' | 'createdAt' | 'updatedAt'>;
