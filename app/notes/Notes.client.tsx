@@ -45,7 +45,8 @@ export default function NotesClient() {
     <div className={css.container}>
       <h1 className={css.pageTitle}>Your Notes</h1>
       <div className={css.controls}>
-        <SearchBox searchTerm={params.search} setSearchTerm={handleSearch} />
+        <SearchBox searchTerm={params.search ?? ''} setSearchTerm={handleSearch} />
+        
         <button
           className={css.createButton}
           onClick={() => setIsModalOpen(true)}
