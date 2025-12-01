@@ -7,9 +7,9 @@ import { useParams } from "next/navigation";
 import type { Note } from "../../../types/note";
 import css from "./NoteDetails.module.css";
 
-export const NoteDetailsClient: FC = () => {
+const NoteDetailsClient: FC = () => {
   const params = useParams();
-  const noteId = params.id as string; // Отримуємо ID з URL
+  const noteId = params.id as string; 
 
   const {
     data: note,
@@ -22,11 +22,11 @@ export const NoteDetailsClient: FC = () => {
   });
 
   if (isLoading) {
-    return <p>Loading, please wait...</p>;
+    return <p>Loading, please wait...</p>; 
   }
 
   if (error || !note) {
-    return <p>Something went wrong.</p>;
+    return <p>Error loading note or note not found.</p>;
   }
 
   return (
@@ -36,7 +36,8 @@ export const NoteDetailsClient: FC = () => {
           <h2>{note.title}</h2>
         </div>
         <p className={css.content}>{note.content}</p>
-        <p className={css.date}>Created date: {note.date}</p>
+        <p className={css.date}>Created date: {note.createdAt}</p> 
+        
       </div>
     </div>
   );
