@@ -1,13 +1,17 @@
 "use client";
 
 import { FC } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, DehydratedState } from "@tanstack/react-query"; 
 import { fetchNoteById } from "../../../lib/api";
 import { useParams } from "next/navigation";
 import type { Note } from "../../../types/note";
 import css from "./NoteDetails.module.css";
 
-const NoteDetailsClient: FC = () => {
+interface NoteDetailsClientProps {
+  dehydratedState: DehydratedState; 
+}
+
+const NoteDetailsClient: FC<NoteDetailsClientProps> = ({ dehydratedState }) => {
   const params = useParams();
   const noteId = params.id as string; 
 
@@ -37,7 +41,6 @@ const NoteDetailsClient: FC = () => {
         </div>
         <p className={css.content}>{note.content}</p>
         <p className={css.date}>Created date: {note.createdAt}</p> 
-        
       </div>
     </div>
   );
