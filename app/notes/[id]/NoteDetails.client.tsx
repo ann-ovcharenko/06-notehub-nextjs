@@ -1,17 +1,13 @@
 "use client";
 
 import { FC } from "react";
-import { useQuery, DehydratedState } from "@tanstack/react-query"; 
+import { useQuery } from "@tanstack/react-query"; 
 import { fetchNoteById } from "../../../lib/api";
 import { useParams } from "next/navigation";
 import type { Note } from "../../../types/note";
 import css from "./NoteDetails.module.css";
 
-interface NoteDetailsClientProps {
-  dehydratedState: DehydratedState; 
-}
-
-const NoteDetailsClient: FC<NoteDetailsClientProps> = ({ dehydratedState }) => {
+const NoteDetailsClient: FC = () => {
   const params = useParams();
   const noteId = params.id as string; 
 
@@ -23,6 +19,7 @@ const NoteDetailsClient: FC<NoteDetailsClientProps> = ({ dehydratedState }) => {
     queryKey: ["note", noteId],
     queryFn: () => fetchNoteById(noteId),
     enabled: !!noteId,
+    refetchOnMount: false, 
   });
 
   if (isLoading) {

@@ -4,12 +4,13 @@ import axios, { type AxiosResponse } from "axios";
 interface ApiNotesResponse {
   notes: Note[];
   totalPages: number;
+  totalCount: number; 
 }
 
 export interface FetchNotesParams {
   page: number;
   perPage: number;
-  search?: string;
+  search: string; 
 }
 
 export type FetchNotesResponse = ApiNotesResponse;
@@ -43,7 +44,7 @@ export const fetchNotes = async ({
       params: {
         page,
         perPage,
-        ...(search && { search }),
+        ...(search && { search }), 
       },
     }
   );
